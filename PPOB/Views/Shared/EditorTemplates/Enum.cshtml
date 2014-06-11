@@ -1,0 +1,19 @@
+﻿@model Enum
+@{
+    var isRequired = this.ViewData.ModelMetadata.IsRequired;
+
+    var type = this.ViewData.ModelMetadata.ModelType;
+    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+    {
+        type = type.GenericTypeArguments[0];
+    }
+
+    var values = Enum.GetValues(type);
+    var items = (from object value in values
+                 select new SelectListItem
+                            {
+                                Text = Enum.GetName(type, value),
+                                Value = value.ToString()
+                            });
+}
+@Html.DropDownListFor(m => m, items, isRequired ? "请选择..." : "空白")
