@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Data;
 using System.Data.Entity;
+using PPOB.Models.Constant;
 
 namespace PPOB.Controllers
 {
@@ -39,6 +40,7 @@ namespace PPOB.Controllers
                                 join c in eDoc on b.Id equals c.ClientDocumentId into b_c
                                 from bc in b_c.DefaultIfEmpty()
                                 select new { Code = b.Id, Name = b.Name, WXPath = (bc == null ? null : bc.WXPath), LocalPath = (bc == null ? null : bc.LocalPath) }).ToList();
+
                 return new
                 {
                     result.Id,
@@ -46,19 +48,19 @@ namespace PPOB.Controllers
                     ClientName = result.Client.Name,
                     result.Mobile,
                     CityName = result.City.Name,
-                    result.EmployeeOBStatus,
+                    EmployeeOBStatus = (result.EmployeeOBStatus == null ? null : Enum.GetName(typeof(EmployeeOBStatus), result.EmployeeOBStatus)),
                     result.EnglishName,
-                    result.Sex,
+                    Sex = (result.Sex == null ? null : Enum.GetName(typeof(Sex), result.Sex)),
                     result.DocumentType,
                     result.DocumentNumber,
                     result.Birthday,
-                    result.Marriage,
+                    Marriage = (result.Marriage == null ? null : Enum.GetName(typeof(Marriage), result.Marriage)),
                     result.Nation,
                     result.Yhy,
                     result.Ysy,
                     result.FixPhone,
                     result.Email,
-                    result.Degree,
+                    Degree = (result.Degree == null ? null : Enum.GetName(typeof(Degree), result.Degree)),
                     result.HukouType,
                     result.HujiAddress,
                     result.HujiZipCode,
