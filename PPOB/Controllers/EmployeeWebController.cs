@@ -33,6 +33,46 @@ namespace PPOB.Controllers
             }
             else
             {
+                //var employeeOBStatuses = Enum.GetValues(typeof(EmployeeOBStatus));
+                //var employeeOBStatusOption = from object value in employeeOBStatuses
+                //                             select new
+                //                             {
+                //                                 Id = (int)value,
+                //                                 Name = value.ToString()
+                //                             };
+
+                var sexes = Enum.GetValues(typeof(Sex));
+                var sexOption = from object value in sexes
+                                select new
+                                {
+                                    Id = (int)value,
+                                    Name = value.ToString()
+                                };
+
+                var documentTypes = Enum.GetValues(typeof(DocumentType));
+                var documentTypeOption = from object value in documentTypes
+                                         select new
+                                         {
+                                             Id = (int)value,
+                                             Name = value.ToString()
+                                         };
+
+                var marriages = Enum.GetValues(typeof(Marriage));
+                var marriageOption = from object value in marriages
+                                     select new
+                                     {
+                                         Id = (int)value,
+                                         Name = value.ToString()
+                                     };
+
+                var degrees = Enum.GetValues(typeof(Degree));
+                var degreeOption = from object value in degrees
+                                   select new
+                                   {
+                                       Id = (int)value,
+                                       Name = value.ToString()
+                                   };
+
                 var cp = db.ClientCity.Where(a => a.ClientId == result.ClientId && ((a.CityId == null && result.CityId == null) || a.CityId == result.CityId)).SingleOrDefault();
                 var eDoc = result.EmployeeEnterDocs;
                 var docItems = (
@@ -48,19 +88,19 @@ namespace PPOB.Controllers
                     ClientName = result.Client.Name,
                     result.Mobile,
                     CityName = result.City.Name,
-                    EmployeeOBStatus = (result.EmployeeOBStatus == null ? null : Enum.GetName(typeof(EmployeeOBStatus), result.EmployeeOBStatus)),
+                    EmployeeOBStatus = Enum.GetName(typeof(EmployeeOBStatus), result.EmployeeOBStatus),
                     result.EnglishName,
-                    Sex = (result.Sex == null ? null : Enum.GetName(typeof(Sex), result.Sex)),
+                    result.Sex,
                     result.DocumentType,
                     result.DocumentNumber,
                     result.Birthday,
-                    Marriage = (result.Marriage == null ? null : Enum.GetName(typeof(Marriage), result.Marriage)),
+                    result.Marriage,
                     result.Nation,
                     result.Yhy,
                     result.Ysy,
                     result.FixPhone,
                     result.Email,
-                    Degree = (result.Degree == null ? null : Enum.GetName(typeof(Degree), result.Degree)),
+                    result.Degree,
                     result.HukouType,
                     result.HujiAddress,
                     result.HujiZipCode,
@@ -73,7 +113,12 @@ namespace PPOB.Controllers
                     result.EverAccumulation,
                     result.EnterDate,
                     EmployeeEducations = result.EmployeeEducations.Select(a => new { a.School, a.Major, a.Degree, a.Start, a.End }),
-                    DocItems = docItems
+                    DocItems = docItems,
+                    //EmployeeOBStatusOption = employeeOBStatusOption,
+                    SexOption = sexOption,
+                    DocumentTypeOption = documentTypeOption,
+                    MarriageOption = marriageOption,
+                    DegreeOption = degreeOption
                 };
             }
         }

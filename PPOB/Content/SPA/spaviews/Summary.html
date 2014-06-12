@@ -16,6 +16,14 @@
                                 <div data-bind="dxTextBox: { value: ClientName, readOnly: true }"></div>
                             </div>
                         </div>
+                        <div class="dx-field">
+                            <div class="dx-field-label">入职状态</div>
+                            <div class="dx-field-value">
+                                <div class="dx-field-value">
+                                    <div data-bind="dxTextBox: { value: EmployeeOBStatus, readOnly: true }"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <h2>资料上传</h2>
                     <div class="dx-fieldset" data-bind="foreach: DocItems">
@@ -50,12 +58,6 @@
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">入职状态</div>
-                            <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EmployeeOBStatus, readOnly: true }"></div>
-                            </div>
-                        </div>
-                        <div class="dx-field">
                             <div class="dx-field-label">英文名</div>
                             <div class="dx-field-value">
                                 <div data-bind="dxTextBox: { value: EnglishName, readOnly: true }"></div>
@@ -64,13 +66,25 @@
                         <div class="dx-field">
                             <div class="dx-field-label">性别</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Sex, readOnly: true }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: SexOption,
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: Sex,
+                                    disabled: true
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">证件类型</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: DocumentType, readOnly: true }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: DocumentTypeOption,
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: DocumentType,
+                                    disabled: true
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
@@ -88,7 +102,13 @@
                         <div class="dx-field">
                             <div class="dx-field-label">婚姻状况</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Marriage, readOnly: true }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: MarriageOption,
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: Marriage,
+                                    disabled: true
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
@@ -124,7 +144,13 @@
                         <div class="dx-field">
                             <div class="dx-field-label">学位</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Degree, readOnly: true }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: DegreeOption,
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: Degree,
+                                    disabled: true
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">

@@ -32,7 +32,12 @@ DXSK8.Store.Summary = function () {
         EverAccumulation: null,
         EnterDate: null,
         EmployeeEducations: [],
-        DocItems: []
+        DocItems: [],
+        //EmployeeOBStatusOption: null,
+        SexOption: null,
+        DocumentTypeOption: null,
+        MarriageOption: null,
+        DegreeOption: null
     };
 
     var viewModel = ko.mapping.fromJS(defaultData);

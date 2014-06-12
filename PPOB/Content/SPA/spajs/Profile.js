@@ -1,235 +1,84 @@
 ﻿DXSK8.Store.Profile = function (params) {
     var isPhone = DevExpress.devices.current().screenSize === "small";
 
-    return {
-        isPhone: isPhone,
-
-        showLookup: function (e) {
-            if (isPhone)
-                return;
-            $(".dx-viewport .dx-lookup-popup-wrapper:visible").addClass(e.element.closest(".billing").length ? "billing-popup" : "shipping-popup");
-        },
-
-        viewShown: function () {
-            if (isPhone)
-                $(".dx-viewport .profile").dxScrollView();
-            else
-                $(".dx-viewport .profile-address-info").dxScrollView();
-        },
-
-        countries: [
-			    "Afghanistanaaa",
-			    "Albania",
-			    "Algeria",
-			    "Andorra",
-			    "Angola",
-			    "Antigua and Barbuda",
-			    "Argentina",
-			    "Armenia",
-			    "Australia",
-			    "Austria",
-			    "Azerbaijan",
-			    "The Bahamas",
-			    "Bahrain",
-			    "Bangladesh",
-			    "Barbados",
-			    "Belarus",
-			    "Belgium",
-			    "Belize",
-			    "Benin",
-			    "Bhutan",
-			    "Bolivia",
-			    "Bosnia and Herzegovina",
-			    "Botswana",
-			    "Brazil",
-			    "Brunei",
-			    "Bulgaria",
-			    "Burkina Faso",
-			    "Burma",
-			    "Burundi",
-			    "Cambodia",
-			    "Cameroon",
-			    "Canada",
-			    "Cape Verde",
-			    "Central African Republic",
-			    "Chad",
-			    "Chile",
-			    "China",
-			    "Colombia",
-			    "Comoros",
-			    "Democratic Republic of the Congo",
-			    "Republic of the Congo",
-			    "Costa Rica",
-			    "Ivory Coast",
-			    "Croatia",
-			    "Cuba",
-			    "Cyprus",
-			    "Czech Republic",
-			    "Denmark",
-			    "Djibouti",
-			    "Dominica",
-			    "Dominican Republic",
-			    "East Timor",
-			    "Ecuador",
-			    "Egypt",
-			    "El Salvador",
-			    "Equatorial Guinea",
-			    "Eritrea",
-			    "Estonia",
-			    "Ethiopia",
-			    "Fiji",
-			    "Finland",
-			    "France",
-			    "Gabon",
-			    "The Gambia",
-			    "Georgia",
-			    "Germany",
-			    "Ghana",
-			    "Greece",
-			    "Grenada",
-			    "Guatemala",
-			    "Guinea",
-			    "Guinea-Bissau",
-			    "Guyana",
-			    "Haiti",
-			    "Honduras",
-			    "Hungary",
-			    "Iceland",
-			    "India",
-			    "Indonesia",
-			    "Iran",
-			    "Iraq",
-			    "Republic of Ireland",
-			    "Israel",
-			    "Italy",
-			    "Jamaica",
-			    "Japan",
-			    "Jordan",
-			    "Kazakhstan",
-			    "Kenya",
-			    "Kiribati",
-			    "North Korea",
-			    "South Korea",
-			    "Kuwait",
-			    "Kyrgyzstan",
-			    "Laos",
-			    "Latvia",
-			    "Lebanon",
-			    "Lesotho",
-			    "Liberia",
-			    "Libya",
-			    "Liechtenstein",
-			    "Lithuania",
-			    "Luxembourg",
-			    "Republic of Macedonia",
-			    "Madagascar",
-			    "Malawi",
-			    "Malaysia",
-			    "Maldives",
-			    "Mali",
-			    "Malta",
-			    "Marshall Islands",
-			    "Mauritania",
-			    "Mauritius",
-			    "Mexico",
-			    "Federated States of Micronesia",
-			    "Moldova",
-			    "Monaco",
-			    "Mongolia",
-			    "Montenegro",
-			    "Morocco",
-			    "Mozambique",
-			    "Namibia",
-			    "Nauru",
-			    "Nepal",
-			    "Kingdom of the Netherlands",
-			    "New Zealand",
-			    "Nicaragua",
-			    "Niger",
-			    "Nigeria",
-			    "Norway",
-			    "Oman",
-			    "Pakistan",
-			    "Palau",
-			    "State of Palestine",
-			    "Panama",
-			    "Papua New Guinea",
-			    "Paraguay",
-			    "Peru",
-			    "Philippines",
-			    "Poland",
-			    "Portugal",
-			    "Qatar",
-			    "Romania",
-			    "Russia",
-			    "Rwanda",
-			    "Saint Kitts and Nevis",
-			    "Saint Lucia",
-			    "Saint Vincent and the Grenadines",
-			    "Samoa",
-			    "San Marino",
-			    "São Tomé and Príncipe",
-			    "Saudi Arabia",
-			    "Senegal",
-			    "Serbia",
-			    "Seychelles",
-			    "Sierra Leone",
-			    "Singapore",
-			    "Slovakia",
-			    "Slovenia",
-			    "Solomon Islands",
-			    "Somalia",
-			    "South Africa",
-			    "South Sudan",
-			    "Spain",
-			    "Sri Lanka",
-			    "Sudan",
-			    "Suriname",
-			    "Swaziland",
-			    "Sweden",
-			    "Switzerland",
-			    "Syria",
-			    "Tajikistan",
-			    "Tanzania",
-			    "Thailand",
-			    "Togo",
-			    "Tonga",
-			    "Trinidad and Tobago",
-			    "Tunisia",
-			    "Turkey",
-			    "Turkmenistan",
-			    "Tuvalu",
-			    "Uganda",
-			    "Ukraine",
-			    "United Arab Emirates",
-			    "United Kingdom",
-			    "United States",
-			    "Uruguay",
-			    "Uzbekistan",
-			    "Vanuatu",
-			    "Vatican City",
-			    "Venezuela",
-			    "Vietnam",
-			    "Yemen",
-			    "Zambia",
-			    "Zimbabwe"
-        ],
-        ppBillingAddress: {
-            "country": ko.observable("中国"),
-            "zipCode": ko.observable("200001"),
-            "state": ko.observable("上海"),
-            "city": ko.observable("上海"),
-            "address": ko.observable("浦东"),
-            "phoneNumber": ko.observable("12345677"),
-            "countries": ko.observable(),
-        },
-
-        Save: function () {
-            $.ajax("Save", {
-                data: ko.toJSON({ tasks: self.ppBillingAddress }),
-                type: "post", contentType: "application/json",
-                success: function (result) { alert(result) }
-            });
-        },
+    var defaultData = {
+        Id: null,
+        Name: null,
+        ClientName: null,
+        Mobile: null,
+        CityName: null,
+        EmployeeOBStatus: null,
+        EnglishName: null,
+        Sex: null,
+        DocumentType: null,
+        DocumentNumber: null,
+        Birthday: null,
+        Marriage: null,
+        Nation: null,
+        Yhy: null,
+        Ysy: null,
+        FixPhone: null,
+        Email: null,
+        Degree: null,
+        HukouType: null,
+        HujiAddress: null,
+        HujiZipCode: null,
+        Address: null,
+        Phone: null,
+        ZipCode: null,
+        EmergencyContactPerson: null,
+        EmergencyContactPhone: null,
+        EverPension: null,
+        EverAccumulation: null,
+        EnterDate: null,
+        //EmployeeOBStatusOption: null,
+        SexOption: null,
+        DocumentTypeOption: null,
+        MarriageOption: null,
+        DegreeOption: null
     };
+
+    var viewModel = ko.mapping.fromJS(defaultData);
+
+    function mapServerData(serverData) {
+        ko.mapping.fromJS(serverData, viewModel);
+    }
+
+    function loadData() {
+        $.getJSON("/api/EmployeeWeb/" + curEmployeeId, function (data) {
+            mapServerData(data);
+        });
+    }
+
+    viewModel.isPhone = isPhone;
+    viewModel.showLookup = function (e) {
+        if (viewModel.isPhone)
+            return;
+        $(".dx-viewport .dx-lookup-popup-wrapper:visible").addClass(e.element.closest(".billing").length ? "billing-popup" : "shipping-popup");
+    };
+
+    viewModel.viewShown = function () {
+        loadData();
+        if (isPhone)
+            $(".dx-viewport .profile").dxScrollView();
+        else
+            $(".dx-viewport .profile-address-info").dxScrollView();
+    };
+
+    viewModel.errors = ko.validation.group(viewModel);
+
+    viewModel.save = function () {
+
+        if (viewModel.errors().length > 0) {
+
+            viewModel.errors.showAllMessages();
+
+            alert("error" + educations()[0].errors().length); //returning the control providing user a chance to correct the issues
+        }
+        else {
+            alert("ok");
+        }
+    }
+
+    return viewModel;
 };
