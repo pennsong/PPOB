@@ -17,6 +17,12 @@
                             </div>
                         </div>
                         <div class="dx-field">
+                            <div class="dx-field-label">社保城市</div>
+                            <div class="dx-field-value">
+                                <div data-bind="dxTextBox: { value: CityName, readOnly: true }"></div>
+                            </div>
+                        </div>
+                        <div class="dx-field">
                             <div class="dx-field-label">入职状态</div>
                             <div class="dx-field-value">
                                 <div data-bind="dxTextBox: { value: EmployeeOBStatus, readOnly: true }"></div>
@@ -26,25 +32,19 @@
                     <h2>个人信息</h2>
                     <div class="dx-fieldset">
                         <div class="dx-field">
-                            <div class="dx-field-label">手机</div>
+                            <div class="dx-field-label">手机*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Mobile }"></div>
-                            </div>
-                        </div>
-                        <div class="dx-field">
-                            <div class="dx-field-label">社保城市</div>
-                            <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: CityName }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: Mobile }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">英文名</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EnglishName }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: EnglishName }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">性别</div>
+                            <div class="dx-field-label">性别*</div>
                             <div class="dx-field-value">
                                 <div style="width:auto;" data-bind="dxSelectBox: {
 							        dataSource: SexOption,
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">证件类型</div>
+                            <div class="dx-field-label">证件类型*</div>
                             <div class="dx-field-value">
                                 <div style="width:auto;" data-bind="dxSelectBox: {
 							        dataSource: DocumentTypeOption,
@@ -66,19 +66,19 @@
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">证件号码</div>
+                            <div class="dx-field-label">证件号码*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: DocumentNumber }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: DocumentNumber }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">出生日期</div>
+                            <div class="dx-field-label">出生日期*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Birthday }"></div>
+                                <div class="pp" data-bind="dxDateBox: { value: Birthday, format: 'date', placeholder: '...'}"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">婚姻状况</div>
+                            <div class="dx-field-label">婚姻状况*</div>
                             <div class="dx-field-value">
                                 <div style="width:auto;" data-bind="dxSelectBox: {
 							        dataSource: MarriageOption,
@@ -89,37 +89,49 @@
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">名族</div>
+                            <div class="dx-field-label">名族*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Nation }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: Nation }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">是否已孕</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Yhy }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: [{Id:null,Name:'不适用'}, {Id:true,Name:'是'}, {Id:false,Name:'否'}],
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: Yhy,
+                                    placeholder: '不适用'
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">是否已育</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Ysy }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: [{Id:null,Name:'不适用'}, {Id:true,Name:'是'}, {Id:false,Name:'否'}],
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: Ysy,
+                                    placeholder: '不适用'
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">固定电话</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: FixPhone }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: FixPhone }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">电子邮件</div>
+                            <div class="dx-field-label">电子邮件*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Email }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: Email }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">学位</div>
+                            <div class="dx-field-label">学历*</div>
                             <div class="dx-field-value">
                                 <div style="width:auto;" data-bind="dxSelectBox: {
 							        dataSource: DegreeOption,
@@ -132,72 +144,90 @@
                         <div class="dx-field">
                             <div class="dx-field-label">户籍性质</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: HukouType }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: HukouTypeOption,
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: HukouType
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">户籍地址</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: HujiAddress }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: HujiAddress }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">户籍地邮编</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: HujiZipCode }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: HujiZipCode }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">联系地址</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Address }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: Address }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">联系电话</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: Phone }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: Phone }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">联系地址邮编</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: ZipCode }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: ZipCode }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">紧急联系人</div>
+                            <div class="dx-field-label">紧急联系人*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EmergencyContactPerson }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: EmergencyContactPerson }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">紧急联系人方式</div>
+                            <div class="dx-field-label">紧急联系人方式*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EmergencyContactPhone }"></div>
+                                <div class="pp" data-bind="dxTextBox: { value: EmergencyContactPhone }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">是否缴纳过社保</div>
+                            <div class="dx-field-label">是否缴纳过社保*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EverPension }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: [{Id:true,Name:'是'}, {Id:false,Name:'否'}],
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: EverPension
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
-                            <div class="dx-field-label">是否缴纳过公积金</div>
+                            <div class="dx-field-label">是否缴纳过公积金*</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EverAccumulation }"></div>
+                                <div style="width:auto;" data-bind="dxSelectBox: {
+							        dataSource: [{Id:true,Name:'是'}, {Id:false,Name:'否'}],
+							        displayExpr: 'Name',
+							        valueExpr: 'Id',
+							        value: EverAccumulation
+							    }"></div>
                             </div>
                         </div>
                         <div class="dx-field">
                             <div class="dx-field-label">开始工作时间</div>
                             <div class="dx-field-value">
-                                <div data-bind="dxTextBox: { value: EnterDate }"></div>
+                                <div class="pp" data-bind="dxDateBox: { value: EnterDate, format: 'date', placeholder: '...'}"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="toastOk" data-bind="dxToast:{message:'保存成功!', type:'success', displayTime: 3000 }"></div>
+            <div id="toastErr" data-bind="dxToast:{message:'保存失败!', type:'error', displayTime: 3000 }"></div>
+            <div id="toastWarn" data-bind="dxToast:{message:'信息有误, 请修正后保存!', type:'warning', displayTime: 3000 }"></div>
             <div class="ppButton">
                 <div data-bind="dxButton: { text: '保存', clickAction: save }"></div>
             </div>

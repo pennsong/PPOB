@@ -73,6 +73,14 @@ namespace PPOB.Controllers
                                        Name = value.ToString()
                                    };
 
+                var hukouTypes = Enum.GetValues(typeof(HukouType));
+                var hukouTypeOption = from object value in hukouTypes
+                                      select new
+                                      {
+                                          Id = (int)value,
+                                          Name = value.ToString()
+                                      };
+
                 var cp = db.ClientCity.Where(a => a.ClientId == result.ClientId && ((a.CityId == null && result.CityId == null) || a.CityId == result.CityId)).SingleOrDefault();
                 var eDoc = result.EmployeeEnterDocs;
                 var docItems = (
@@ -118,29 +126,29 @@ namespace PPOB.Controllers
                     SexOption = sexOption,
                     DocumentTypeOption = documentTypeOption,
                     MarriageOption = marriageOption,
-                    DegreeOption = degreeOption
+                    DegreeOption = degreeOption,
+                    HukouTypeOption = hukouTypeOption
                 };
             }
         }
 
-        // POST api/<controller>
-        public void Post(int id, [FromBody]List<EmployeeEducation> ees)
-        {
-            Employee employee = db.Employee.Include(a => a.EmployeeEducations).Where(a => a.Id == id).Single();
-            List<EmployeeEducation> nd = db.EmployeeEducation.Where(a => a.EmployeeId == id).ToList();
-            foreach (var i in nd)
-            {
-                db.EmployeeEducation.Remove(i);
-            }
-            employee.EmployeeEducations = ees;
-            db.SaveChanges();
-        }
+        //// POST api/<controller>
+        //public void Post(int id, [FromBody]List<EmployeeEducation> ees)
+        //{
+        //    Employee employee = db.Employee.Include(a => a.EmployeeEducations).Where(a => a.Id == id).Single();
+        //    List<EmployeeEducation> nd = db.EmployeeEducation.Where(a => a.EmployeeId == id).ToList();
+        //    foreach (var i in nd)
+        //    {
+        //        db.EmployeeEducation.Remove(i);
+        //    }
+        //    employee.EmployeeEducations = ees;
+        //    db.SaveChanges();
+        //}
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]Employee employee)
+        public string Post(int id, [FromBody]Employee employee)
         {
             var result = db.Employee.Find(id);
-            result.Name = employee.Name;
             result.Mobile = employee.Mobile;
             result.EnglishName = employee.EnglishName;
             result.Sex = employee.Sex;
@@ -166,7 +174,15 @@ namespace PPOB.Controllers
             result.EverAccumulation = employee.EverAccumulation;
             result.EnterDate = employee.EnterDate;
 
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return "error:" + e.Message;
+            }
         }
 
         // DELETE api/<controller>/5

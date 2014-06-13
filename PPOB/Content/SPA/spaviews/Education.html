@@ -46,6 +46,9 @@
 		   			</div>
 		   		</div>
    			</div>
+            <div id="toastOk" data-bind="dxToast:{message:'保存成功!', type:'success', displayTime: 3000 }"></div>
+            <div id="toastErr" data-bind="dxToast:{message:'保存失败!', type:'error', displayTime: 3000 }"></div>
+            <div id="toastWarn" data-bind="dxToast:{message:'信息有误, 请修正后保存!', type:'warning', displayTime: 3000 }"></div>
    			<div class="ppButton">
 	           	<div data-bind="dxButton: { text: '添加', clickAction: add, disabled: educations().length >= 5 }"></div>
 			   	<div data-bind="dxButton: { text: '保存', clickAction: save }"></div>
