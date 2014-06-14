@@ -406,8 +406,8 @@ namespace PPOB.Controllers
 
         public ActionResult FirstPage()
         {
-            ViewBag.CurEmployeeId = 1;
-            return View();
+            //ViewBag.CurEmployeeId = 1;
+            //return View();
             if (Session["EmployeeOpenId"] == null)
             {
                 //state:1 return to FirstPage

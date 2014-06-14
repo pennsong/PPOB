@@ -12,13 +12,22 @@ function NewEducation(school, major, degree, start, end) {
 DXSK8.Store.Education = function () {
     var isPhone = DevExpress.devices.current().screenSize === "small";
 
-    var educations = ko.observableArray([
-        	new NewEducation("", "", "", "", "")
-    ]);
+    var educations = ko.observableArray();
+
+    function loadData() {
+        $.getJSON("/api/EmployeeEducationWeb/" + curEmployeeId, function (data) {
+            viewModel.educations().length = 0;
+            $.each(data.EmployeeEducations, function (index, item) {
+                viewModel.educations.push(new NewEducation(item.School, item.Major, item.Degree, item.Start, item.End));
+            });
+        });
+    }
 
     var viewModel = {
 
         isPhone: isPhone,
+
+        degrees: [{ "Id": 10, "Name": "初中及以下" }, { "Id": 20, "Name": "高中" }, { "Id": 30, "Name": "大专" }, { "Id": 40, "Name": "本科" }, { "Id": 50, "Name": "硕士" }, { "Id": 60, "Name": "博士" }],
 
         showLookup: function (e) {
             if (isPhone)
@@ -27,6 +36,7 @@ DXSK8.Store.Education = function () {
         },
 
         viewShown: function () {
+            loadData();
             if (isPhone)
                 $(".dx-viewport .profile").dxScrollView();
             else
@@ -34,8 +44,6 @@ DXSK8.Store.Education = function () {
         },
 
         educations: educations,
-
-        degrees: [{ Id: 1, Name: "小学" }, { Id: 2, Name: "大学" }],
 
         add: function () {
             educations.push(new NewEducation("", "", "", "", ""));
@@ -55,11 +63,10 @@ DXSK8.Store.Education = function () {
 
             if (errorExists) {
                 $("#toastWarn").dxToast('instance').show();
-                viewModel.errors.showAllMessages();
             }
             else {
                 $.ajax("/api/EmployeeEducationWeb/" + curEmployeeId, {
-                    data: ko.toJSON(viewModel),
+                    data: ko.toJSON(educations),
                     type: "post", contentType: "application/json",
                     success: function (data, textStatus) {
                         $("#toastOk").dxToast('instance').show();
